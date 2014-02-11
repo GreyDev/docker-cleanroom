@@ -16,9 +16,11 @@ RUN for X in $(busybox --list) ; do ln -s busybox bin/$X ; done
 RUN bash -c "cp /lib/x86_64-linux-gnu/lib{c,dl,nsl,nss_*,pthread,resolv,rt,crypt}.so.* lib"
 RUN cp /lib/x86_64-linux-gnu/ld-linux-x86-64.so.2 lib
 
-ADD build.sh /tmp/build.sh
-RUN /tmp/build.sh
+WORKDIR /tmp
+ADD install/install.sh /tmp/install.sh
+RUN /tmp/install.sh
 
+WORKDIR /rootfs
 RUN tar cf /rootfs.tar .
 RUN for X in console null ptmx random stdin stdout stderr tty urandom zero ; do tar uf /rootfs.tar -C/ ./dev/$X ; done
 

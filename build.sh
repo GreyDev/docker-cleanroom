@@ -14,20 +14,19 @@
 }
 
 echo "Generating build container..."
-timestamp=$(date +%s)
-docker build -rm -no-cache -t "build-$2:$timestamp" $1|| {
+docker build -rm -no-cache -t "build-$2" $1|| {
     echo "Something went wrong when building the builder. Aborting."
     exit 1
 }
 
 echo "Build container finished. Generating root filesystem"
-docker run build-$2 cat /rootfs.tar > $1/rootfs.tar
+docker run build-$2 cat /rootfs.tar > $1/rootfs/rootfs.tar
 
 echo "Root filesystem generated. Building container."
-[ -f $1/rootfs ] && rm -rf $1/rootfs
-mkdir $1/rootfs
-tar xf $1/rootfs.tar -C $1/rootfs
+#[ -d $1/rootfs ] && rm -rf $1/rootfs
+#mkdir $1/rootfs
+#tar xf $1/rootfs.tar -C $1/rootfs
 
-docker build -rm -t "$2:$timestamp" $1
+docker build -rm -t "$2" $1/rootfs/
 
 echo "Building Docker image $2 complete."
