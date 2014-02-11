@@ -43,7 +43,8 @@ The process is as follows:
 
 1. A clean build environment is created using our custom ubuntu-dev as a base
 2. A working directory for our Busybox root filesystem is created in `/rootfs`
-3. We add `install/install.sh` into our build evironment and execute it
-4. `/rootfs.tar` is created from `rootfs`
-5. We create a container of the image, and copy out the `rootfs.tar`
-6. A final image is produced using the `rootfs.tar`
+3. We add `install/install.sh` into our build evironment
+4. We create a container from the image, and run the install scrips.
+5. `/rootfs.tar` is created from `/rootfs`
+6. `/rootfs.tar` is extracted from the build environment
+7. A final image is produced using the `rootfs.tar`
