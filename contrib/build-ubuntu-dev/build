@@ -1,0 +1,8 @@
+#!/bin/sh
+echo "Building..."
+timestamp=$(date +%s)
+docker build -rm -no-cache -t "ubuntu-dev:$timestamp" .|| {
+    echo "Something went wrong when building the builder. Aborting."
+    exit 1
+}
+echo "Build finished."
