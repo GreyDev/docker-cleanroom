@@ -1,7 +1,6 @@
 #!/bin/sh
 [ "$1" ] || {
     echo "Specify build directory to use:"
-    ls -1 -d build-*
     exit 1
 }
 [ "$2" ] || {
