@@ -26,6 +26,5 @@ echo "Build container finished. Generating root filesystem"
 docker run build-$output cat /rootfs.tar > $source/rootfs/rootfs.tar
 
 echo "Root filesystem generated. Building container."
-cp $source/rootfs/rootfs.tar .
-docker build -rm -t "$output" .
+docker build -rm -t "$output" $source/rootfs
 echo "Building Docker image $2 complete."
