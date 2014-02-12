@@ -1,4 +1,5 @@
 FROM scratch
-MAINTAINER Jérôme Petazzoni <jerome@docker.com>
+MAINTAINER Grey <grey@greytheory.net
 ADD rootfs.tar /
-CMD /bin/sh
+CMD /sbin/init
+EXPOSE 80 21

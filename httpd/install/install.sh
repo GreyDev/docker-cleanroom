@@ -9,6 +9,16 @@ echo root:x:0:0:root:/:/bin/sh > etc/passwd
 echo root:x:0: > etc/group
 echo nobody:x:1:1:nobody:/:/bin/false > etc/passwd
 echo nobody:x:1: > etc/group
+
+mkdir etc/init.d
+mkdir etc/rc.d
+
+cp /tmp/inittab etc/
+#rcS defines the init scripts
+cp /tmp/rcS etc/init.d/
+#an init script
+cp /tmp/S50init etc/rc.d/
+
 ln -s lib lib64
 ln -s bin sbin
 cp /bin/busybox bin
