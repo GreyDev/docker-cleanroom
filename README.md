@@ -22,7 +22,8 @@ Once we have our base build container, we can start being productive. Let's buil
 
 ```
 ./build.sh <build scripts> <output container>
-./build.sh build-busybox mybusybox
+./build.sh busybox mybusybox
+./build.sh httpd myhttpd
 ```
 
 Hopefully, if all goes well we should see `Building Docker image busybox complete.`.  
@@ -31,6 +32,7 @@ We can test our image using standard Docker commands:
 ```
 docker images
 docker run -t -i mybusybox /bin/ash
+docker run -t -i -p 80:80 myhttpd /bin/thttpd -D
 ```
 
 And we're done!
